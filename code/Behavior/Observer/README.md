@@ -103,3 +103,108 @@ ObserverA,I get notify:起立
 ObserverC,I get notify:起立
 
 ```
+
+再具体点的案例
+Case：
+在教室里老师还没有来，同学都在干着各的事情，小张正在打游戏，小李正在抄作业.....,  现在同学们要求班长当卧底，监视老师，当老师来了通知大家一声。然后打游戏的马上停止，抄作业的也停止。
+
+这里班长相当于是一个通知者， 小张、小李，以及其他同学显然是监听者，他们监听了班长那的消息，一旦老师来了马上采取相关的行动。
+```
+#include <iostream>
+#include <list>
+using namespace std;
+
+//首先，把通知者的行为抽象为一个接口：（subject）
+class INotifier{
+public:
+    virtual void registerListener(ITeacherListener *l)=0;
+    virtual void removeListener(ITeacherListener *l)=0;
+    virtual void notify()=0;
+
+};
+//第二，然后班长作为一个具体的通知者：（ConcreteSubject）
+class MonitorNotifier:public INotifier{
+public:
+    void registerListener(ITeacherListener *l){
+        listenerList.push_back(l);
+    }
+    void removeListener(ITeacherListener *l)
+    {
+        listenerList.remove(l);
+    }
+    void setValue(int val)
+    {
+        value = val;
+    }
+    void notify()
+    {
+        for (ITeacherListener *l:listenerList)
+        {
+            l->onTeacherComming(value);
+        }
+    }
+private:
+    list<ITeacherListener *> listenerList;
+    int value; //=the msg need notify
+};
+
+//第三，定义一个监听者的接口，想要监听老师来了这个消息的同学必须要实现这个接口，因为通知者通过这个接口传达消息：
+class ITeacherListener{
+public:
+    virtual void onTeacherComming(int value)=0;
+};
+class ZhangSan:public ITeacherListener
+{
+public:
+    void onTeacherComming(int value){
+        stopCopyWork(value);
+    }
+    void stopCopyWork(int value)
+    {
+        cout << "zhang san stopCopyWork " << value << endl;
+    }
+};
+//第四，ZhangSan,LiSi监听了老师来了这个接口：
+class Lisi:public ITeacherListener
+{
+public:
+    void onTeacherComming(int value)
+    {
+        stopPlayGame(value);
+    }
+    void stopPlayGame(int value)
+    {
+        cout << "Li si stopPlayGame " << value << endl;
+    }
+};
+
+
+
+int main(int argc, char *argv[])
+{
+   cout << "--------------------"<<endl;
+   MonitorNotifier monitor;
+   ZhangSan zs;
+   LiSi ls;
+   monitor.registerListenner(&zs);
+   monitor.registerListenner(&ls);
+   monitor.setValue(1);
+
+   cout << "-----------------"<<endl;
+   monitor.removeListenner(&ls);
+   monitor.setValue(2);
+
+
+    return 0;
+}
+```
+运行结果：
+```
+--------------------
+zhang san stopCopyWork 1
+Li si stopPlayGame 1
+-----------------
+zhang san stopCopyWork 2
+
+
+```

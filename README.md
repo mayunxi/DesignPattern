@@ -1,5 +1,5 @@
 ﻿﻿# Design Pattern
-  
+
 设计模式
 
 [gitee镜像:https://gitee.com/jaredtao/DesignPattern](https://gitee.com/jaredtao/DesignPattern)
@@ -40,7 +40,7 @@
 |编号| 类型   | 模式         | 说明                                                                                                |
 |:----:| :----: | :----------: | :-------------------------------------------------------------------------------------------------: |
 | 1 | 创建型 | 工厂方法模式 | [工厂方法模式](code/Create/FactoryMethod/README.md)                                                 |
-| 2 | 创建型 | 抽象工厂模式 | [抽象工厂模式](code/Create/AbstractFactory/README.md)                                               |
+| 2 | 创建型 | 抽象工厂模式 | [抽象工厂模式](code/Create/FactoryMethod/README.md)                                               |
 | 3 | 创建型 | 构建模式     | [构建模式](code/Create/Builder/README.md)                                                           |
 | 4 | 创建型 | 单例模式     | [单例模式](code/Create/Singleton/README.md)                                                         |
 | 5 | 创建型 | 原型模式     | [原型模式](code/Create/Prototype/README.md)                                                         |
@@ -75,7 +75,7 @@
 
 描述如何将类和对象结合在一起形成更大的结构，就像搭积木，通过简单积木的组合形成结构复杂、功能强大的结构
 分为 类结构型模式 和 对象结构型模式：
-* 类结构型模式 
+* 类结构型模式
 
  关心类的组合，由多个类可以组合成一个更大的
 系统，在类结构型模式中一般只存在继承关系和实现关系
@@ -108,11 +108,11 @@
     Struct  7种结构型
 
 -Template 用C++模板技巧实现的，个别能复用的设计模式
-    
-    Create -> SingleTon  
-    
+
+    Create -> SingleTon
+
     单例模板，继承模板以实现复用。
-    
+
     c++11的static保证多线程唯一实例。
 
     Behavior -> Observer
@@ -143,4 +143,3 @@ QQ(TIM)、微信二维码
 <img src="https://gitee.com/jaredtao/jaredtao/raw/master/img/weixin.jpg?raw=true" width="30%" height="30%" /><img src="https://gitee.com/jaredtao/jaredtao/raw/master/img/zhifubao.jpg?raw=true" width="30%" height="30%" />
 
 ###### 觉得分享的内容还不错, 就请作者喝杯奶茶吧~~ ######
-

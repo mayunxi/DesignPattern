@@ -77,6 +77,7 @@ public:
 };
 int main()
 {
+    //相当于在动态多态基础上封装了一层
     Context *context = new Context(new OperationAdd());
     cout << context->executeStrategy(1,2) << endl;
     context = new Context(new OperationSub());

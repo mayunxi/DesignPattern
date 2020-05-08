@@ -41,7 +41,7 @@
 |:----:| :----: | :----------: | :-------------------------------------------------------------------------------------------------: |
 | 1 | 创建型 | 工厂方法模式 | [工厂方法模式](code/Create/FactoryMethod/README.md)                                                 |
 | 2 | 创建型 | 抽象工厂模式 | [抽象工厂模式](code/Create/FactoryMethod/README.md)                                               |
-| 3 | 创建型 | 构建模式     | [建造者模式](code/Create/Builder/README.md)                                                           |
+| 3 | 创建型 | 建造者模式     | [建造者模式](code/Create/Builder/README.md)                                                           |
 | 4 | 创建型 | 单例模式     | [单例模式](code/Create/Singleton/README.md)                                                         |
 | 5 | 创建型 | 原型模式     | [原型模式](code/Create/Prototype/README.md)                                                         |
 | 6 | 结构型 | 复合模式     | [复合模式](code/Struct/Composite/README.md)                                                         |

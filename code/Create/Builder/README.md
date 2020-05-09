@@ -19,38 +19,103 @@
 
 ###在实际使用中：
 
-Director角色往往被省略，Builder也作为静态内部类被放入产品内部（使用静态的原因，是可以不依赖于外部类实例而被创建），通过使用Builder实例中方法的链式调用，来构建产品对象。使得整体更加简单灵活。
 
 ```
-public class ProductObj {
-    private final String mName;
-    private final String mValue;
+#include <iostream>
 
-    private ProductObj(Builder builder) {
-        this.mName = builder.name;
-        this.mValue = builder.value;
+using namespace std;
+//1) 产品角色：包含多个组成部件的复杂对象。
+class Product
+{
+private:
+string partA;
+string partB;
+string partC;
+public:
+        void setPartA(string partA)
+        {
+            this->partA=partA;
+        }
+        void setPartB(string partB)
+        {
+            this->partB=partB;
+        }
+        void setPartC(string partC)
+        {
+            this->partC=partC;
+        }
+        void show()
+        {
+            cout << partA << partB << partC << endl;
+            //显示产品的特性
+        }
+};
+//(2) 抽象建造者：包含创建产品各个子部件的抽象方法。
+
+class Builder
+{
+        //创建产品对象
+protected:
+    Product *product=new Product();
+public:
+     virtual void buildPartA()=0;
+     virtual void buildPartB()=0;
+     virtual void buildPartC()=0;
+        //返回产品对象
+     virtual Product* getResult()
+     {
+          return product;
+     }
+};
+
+//(3) 具体建造者：实现了抽象建造者接口。
+class ConcreteBuilder:public Builder
+{
+public:
+    void buildPartA()
+    {
+        product->setPartA("建造 PartA");
     }
-
-    public static class Builder {
-        private String name;
-        private String value;
-
-        public Builder buildName(String nameObj) {
-            this.name = nameObj;
-            return this;
-        }
-
-        public Builder buildValue(String valueObj) {
-            this.value = valueObj;
-            return this;
-        }
-
-        public ProductObj build() {
-            return new ProductObj(this);
-        }
+    void buildPartB()
+    {
+        product->setPartB("建造 PartB");
     }
+    void buildPartC()
+    {
+        product->setPartC("建造 PartC");
+    }
+};
+
+
+//(4) 指挥者：调用建造者中的方法完成复杂对象的创建。
+class Director
+{
+private:
+    Builder *builder;
+public:
+    Director(Builder *builder)
+    {
+        this->builder=builder;
+    }
+//产品构建与组装方法
+public:
+    Product *construct()
+    {
+        builder->buildPartA();
+        builder->buildPartB();
+        builder->buildPartC();
+        return builder->getResult();
+    }
+};
+
+
+int main()
+{
+    Builder *builder=new ConcreteBuilder();
+    Director *director=new Director(builder);
+    Product *product=director->construct();
+    product->show();
 }
-
 ```
 
 ### 模式结构

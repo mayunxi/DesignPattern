@@ -44,6 +44,7 @@ public:
         return num1+num2;
     }
 };
+
 class OperationSub:public Strategy
 {
 public:
@@ -52,6 +53,7 @@ public:
         return num1 - num2;
     }
 };
+
 class OperationMul:public Strategy
 {
 public:
@@ -60,6 +62,7 @@ public:
         return num1 * num2;
     }
 };
+
 //创建 Context 类。
 class Context
 {
@@ -77,7 +80,6 @@ public:
 };
 int main()
 {
-    //相当于在动态多态基础上封装了一层
     Context *context = new Context(new OperationAdd());
     cout << context->executeStrategy(1,2) << endl;
     context = new Context(new OperationSub());

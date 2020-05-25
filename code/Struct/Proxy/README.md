@@ -89,7 +89,7 @@ int main()
 
 　　![image](https://upload-images.jianshu.io/upload_images/21440240-1615866bbb658415.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-* `此设计模式和类适配器模式很像，区别在于类适配器RealSubject没有继承自Subject`
+* `此设计模式和对象适配器模式很像，区别在于代理模式中RealSubject继承自Subject`
 * ` 和策略模式也很像，区别RealSubject *realSubject变为Subject *subject，可以指向由Subject派生出的对象，由Proxy创建时传入。`
 
 ## 二、代理模式的应用

@@ -1,21 +1,63 @@
-#include "CountDisplay.h"
-#include "Display.h"
-#include "StringDisplayImpl.h"
-#include <memory>
-int main(int argc, char **argv)
+#include <iostream>
+
+using namespace std;
+
+class Memory{
+  public:
+   virtual void addMemory() = 0;
+};
+
+class Memory6G:public Memory{
+  public:
+    void addMemory()
+    {
+        cout << "phone use 6G memory" << endl;
+    }
+};
+class Memory8G:public Memory{
+  public:
+    void addMemory()
+    {
+        cout << "phone use 8G memory" << endl;
+    }
+};
+
+class Phone{
+  public:
+    Memory *phoneMemory;
+    void setMemory(Memory *memory)
+    {
+        this->phoneMemory = memory;
+    }
+    virtual void buyPhone() = 0;
+};
+class HuaWei:public Phone
 {
-    std::shared_ptr<IDisplayImpl> impl1(new StringDisplayImpl("Hello, China"));
-    std::shared_ptr<Display> d1(new Display(impl1.get()));
+  public:
+    void buyPhone()
+    {
+        phoneMemory->addMemory();
+        cout << "buy Huawei Phone" << endl;
+    }
+};
 
-    std::shared_ptr<IDisplayImpl> impl2(new StringDisplayImpl("Hello, Tao"));
-    std::shared_ptr<Display> d2(new CountDisplay(impl2.get()));
+class XiaoMi:public Phone
+{
+  public:
+    void buyPhone()
+    {
+        phoneMemory->addMemory();
+        cout << "buy XiaoMi Phone" << endl;
+    }
+};
 
-    std::shared_ptr<IDisplayImpl> impl3(new StringDisplayImpl("Hello,Universe"));
-    std::shared_ptr<CountDisplay> d3(new CountDisplay(impl3.get()));
+int main()
+{
+    Phone *huawei = new HuaWei();
+    huawei->setMemory(new Memory8G);
+    huawei->buyPhone();
 
-    d1->display();
-    d2->display();
-    d3->display();
-    d3->mulitDisplay(4);
-    return 0;
+    Phone *xiaomi = new XiaoMi();
+    xiaomi->setMemory(new Memory6G);
+    xiaomi->buyPhone();
 }

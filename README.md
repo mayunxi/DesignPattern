@@ -131,6 +131,8 @@
 | 21 | 行为型 | 状态模式     | [状态模式](code/Behavior/State/README.md)                                                           |
 | 22 | 行为型 | 命令模式     | [命令模式](code/Behavior/Command/README.md)                                                         |
 | 23| 行为型 | 解释器模式   | [解释器模式](code/Behavior/Interpreter/README.md)                                                   |
+
+设计模式比较： [比较](code/README.md)  
 ## 总结
 
 ### 创建型模式

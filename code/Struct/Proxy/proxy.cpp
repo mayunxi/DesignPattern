@@ -16,7 +16,7 @@ void request() {
 class Proxy:public Subject {
 
 private:
-    RealSubject *realSubject = NULL;
+    RealSubject *realSubject = NULL;  //很像对象适配器模式
 
 public:
     Proxy() {

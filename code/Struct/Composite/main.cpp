@@ -1,51 +1,83 @@
-#include "Directory.h"
-#include "File.h"
+#include<stdio.h>
+#include<string>
+#include<vector>
+#include<iostream>
+using namespace std;
+
+
+//抽象构件
+class Component
+{
+public:
+    virtual void add(Component *c) = 0;
+    virtual void remove(Component *c) = 0;
+    virtual Component *getChild(int i) = 0;
+    virtual void operation() = 0;
+};
+//树叶构件
+class Leaf:public Component
+{
+private:
+    string name;
+public:
+    Leaf(string name)
+    {
+        this->name=name;
+    }
+    void add(Component *c){ }
+    void remove(Component *c){ }
+    Component *getChild(int i)
+    {
+        return NULL;
+    }
+    void operation()
+    {
+        cout << "树叶"<< name << "：被访问！" << endl;
+    }
+};
+//树枝构件
+class Composite:public Component
+{
+private:
+    vector<Component*> children;
+public:void add(Component *c)
+    {
+        children.push_back(c);
+    }
+    void remove(Component *c)
+    {
+        //children.erase(c);
+    }
+    Component *getChild(int i)
+    {
+        return children.at(i);
+    }
+    void operation()
+    {
+        //增强型for循环
+        for (auto obj:children)
+        {
+            obj->operation();
+        }
+    }
+};
+
 
 int main()
 {
-    Directory *root = new Directory("root");
-    Directory *bin = new Directory("bin");
-    Directory *tmp = new Directory("tmp");
-    Directory *usr = new Directory("usr");
+    Component *c0=new Composite();
+    Component *c1=new Composite();
+    Component *leaf1=new Leaf("1");
+    Component *leaf2=new Leaf("2");
+    Component *leaf3=new Leaf("3");
+    c0->add(leaf1);
+    //
+    c0->add(c1);
 
-    root->addEntryy(bin);
-    root->addEntryy(tmp);
-    root->addEntryy(usr);
-    bin->addEntryy(new File("vi", 3000));
-    bin->addEntryy(new File("latex", 2000));
-    static_cast<Entry *>(root)->printList();
+    c1->add(leaf2);
+    c1->add(leaf3);
 
-    Directory *yuki = new Directory("yuki");
-    Directory *hanako = new Directory("hanako");
-    Directory *tomura = new Directory("tomura");
+    c0->operation();
 
-    usr->addEntryy(yuki);
-    usr->addEntryy(hanako);
-    usr->addEntryy(tomura);
-    yuki->addEntryy(new File("diary.html", 100));
-    hanako->addEntryy(new File("memo.tex", 1024));
-    tomura->addEntryy(new File("junk.mail", 40));
-
-    static_cast<Entry *>(root)->printList();
-
-    // for test coverage
-    {
-        File *f = new File("123.txt", 1);
-        f->addEntryy(root);
-        f->printList("");
-        delete f;
-    }
-    {
-        yuki->printList("");
-    }
-    {
-        File *f = new File("123.txt", 1);
-        Entry *e = new Directory("test");
-        e->addEntryy(f);
-        e->printList("");
-        e->toString();
-        delete e;
-    }
-    delete root;
     return 0;
 }

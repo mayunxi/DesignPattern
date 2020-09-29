@@ -113,11 +113,11 @@
 | 3 | 创建型 | 建造者模式     | [建造者模式](code/Create/Builder/README.md)                                                           |
 | 4 | 创建型 | 单例模式     | [单例模式](code/Create/Singleton/README.md)                                                         |
 | 5 | 创建型 | 原型模式     | [原型模式](code/Create/Prototype/README.md)                                                         |
-| 6 | 结构型 | 复合模式     | [复合模式](code/Struct/Composite/README.md)                                                         |
+| 6 | 结构型 | 组合模式     | [组合模式](code/Struct/Composite/README.md)                                                         |
 | 7 | 结构型 | 适配器模式   | [类适配器模式and对象适配器模式](code/Struct/Adapter/README.md)  |
 | 8 | 结构型 | 装饰模式     | [装饰模式](code/Struct/Decorator/README.md)                                                         |
-| 9 | 结构型 | 窗口模式     | [窗口模式](code/Struct/Facade/README.md)                                                            |
-| 10 | 结构型 | 轻量模式     | [轻量模式](code/Struct/FlyWeight/README.md)                                                         |
+| 9 | 结构型 | 外观模式     | [外观模式](code/Struct/Facade/README.md)                                                            |
+| 10 | 结构型 | 轻量模式     | [轻量模式/享元模式](code/Struct/FlyWeight/README.md)                                                         |
 | 11 | 结构型 | 代理模式     | [代理模式](code/Struct/Proxy/README.md)                                                             |
 | 12 | 结构型 | 桥接模式     | [桥接模式](code/Struct/Bridge/README.md)                                                            |
 | 13 | 行为型 | 迭代器模式   | [迭代器模式](code/Behavior/Iterator/README.md)                                                      |
@@ -132,7 +132,7 @@
 | 22 | 行为型 | 命令模式     | [命令模式](code/Behavior/Command/README.md)                                                         |
 | 23| 行为型 | 解释器模式   | [解释器模式](code/Behavior/Interpreter/README.md)                                                   |
 
-设计模式比较： [比较](code/README.md)  
+设计模式比较： [比较](code/README.md)
 ## 总结
 
 ### 创建型模式
